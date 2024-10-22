@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+custome_purchase.access_rfq_bid,access_rfq_bid,custome_purchase.model_rfq_bid,base.group_user,1,1,1,1

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--    form view for out module-->
+    <record id="estate_form" model="ir.ui.view">
+            <field name="name">estate.model.form</field>
+            <field name="model">estate.model</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name = "name"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name = "bedrooms"/>
+                                <field name = "date_availability"/>
+                                <field name = "expected_price"/>
+                                <field name = "selling_price"/>
+                            </group>
+                            <group>
+                                <field name = "description"/>
+                                <field name = "living_area"/>
+                                <field name = "garden"/>
+                                <field name = "garden_orientation"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name = "postcode"/>
+                            <field name = "owner_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+<!--    tree view or list view of the module -->
+    <record id="estate_tree" model="ir.ui.view">
+            <field name="name">estate.model.tree</field>
+            <field name="model">estate.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name = "name"/>
+                    <field name = "bedrooms"/>
+                    <field name = "date_availability"/>
+                    <field name = "expected_price"/>
+                    <field name = "selling_price"/>
+                    <field name = "garden"/>
+                    <field name = "owner_id"/>
+                </tree>
+            </field>
+    </record>
+
+
+<!--    action for the menu items -->
+    <record id="estate_actions" model="ir.actions.act_window">
+        <field name="name">Estate</field>
+        <field name="res_model">estate.model</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Real estate Houses and prices, create an instance!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="estate_root"
+        name="Estate"
+        active="True"
+        sequence="10"/>
+
+    <menuitem id = "estate_house_root"
+              name = "House Types"
+              sequence="10"
+              parent = "estate_root"
+              />
+    <menuitem id = "estate_house_type_1"
+              name = "Bangaloo"
+              sequence="10"
+              parent = "estate_house_root"
+              action = "estate_actions"
+              />
+      <menuitem id = "estate_house_type_2"
+              name = "Storied"
+              sequence="10"
+                action = "estate_actions"
+              parent = "estate_house_root"
+              />
+
+</odoo>

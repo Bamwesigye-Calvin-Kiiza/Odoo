@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View for Purchase Request -->
+    <record id="purchase_request_form" model="ir.ui.view">
+        <field name="name">purchase.request.form</field>
+        <field name="model">purchase.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name = "product_id"/>
+                        <field name = "product_quantity"/>
+                        <field name="request_description"/>
+                        <field name="state"/>
+                    </group>
+                    <group>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View for Purchase Request -->
+    <record id="purchase_request_tree" model="ir.ui.view">
+        <field name="name">purchase.request.tree</field>
+        <field name="model">purchase.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name = "product_id"/>
+                <field name = "product_quantity"/>
+                <field name="request_description"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for the Purchase Request Menu -->
+    <record id="action_purchase_request" model="ir.actions.act_window">
+        <field name="name">Purchase Requests</field>
+        <field name="res_model">purchase.request</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage employee purchase requests that will be used to create RFQs.
+            </p>
+        </field>
+    </record>
+
+    <!-- Root Menu for Purchases -->
+    <menuitem id="menu_purchase_root"
+              name="Purchase Request"
+              active = "True"
+              sequence="10"/>
+
+    <!-- Submenu for Purchase Requests -->
+    <menuitem id="menu_purchase_request"
+              name="Purchase Requests"
+              sequence="10"
+              parent="menu_purchase_root"
+              action="action_purchase_request"/>
+</odoo>

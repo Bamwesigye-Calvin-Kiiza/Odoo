@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="apply_national_id_form" name="National ID Application Form">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>National ID Application</h2>
+                <form action="/submit_national_id_application" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <label>Name</label>
+                        <input type="text" name="applicant_name" required="True"/>
+                    </div>
+                    <div>
+                        <label>Date of Birth</label>
+                        <input type="date" name="date_of_birth" required="True"/>
+                    </div>
+                    <div>
+                        <label>Place of Birth</label>
+                        <input type="text" name="place_of_birth" required="True"/>
+                    </div>
+                    <div>
+                        <label>Contact Number</label>
+                        <input type="text" name="contact_number" required="True"/>
+                    </div>
+                    <div>
+                        <label>National ID Number</label>
+                        <input type="text" name="national_id_number" required="True"/>
+                    </div>
+                    <div>
+                        <label>Upload Photo</label>
+                        <input type="file" name="photo" accept="image/*" required="True"/>
+                    </div>
+                    <div>
+                        <label>Upload LC Reference Letter</label>
+                        <input type="file" name="lc_reference_letter" accept="application/pdf" required="True"/>
+                    </div>
+                    <div>
+                        <button type="submit">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="application_success" name="Application Success">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>Application Submitted Successfully!</h2>
+                <p>Your application is under review.</p>
+            </div>
+        </t>
+    </template>
+</odoo>

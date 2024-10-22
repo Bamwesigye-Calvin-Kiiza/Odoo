@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_national_id_application_tree" model="ir.ui.view">
+        <field name="name">national.id.application.tree</field>
+        <field name="model">national.id.application</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="applicant_name"/>
+                <field name="date_of_birth"/>
+                <field name="national_id_number"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_national_id_application_form" model="ir.ui.view">
+        <field name="name">national.id.application.form</field>
+        <field name="model">national.id.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_stage_1_approval" type="object" string="Stage 1 Approval"
+                            modifiers="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_stage_2_approval" type="object" string="Stage 2 Approval"
+                            modifiers="{'invisible': [('state', '!=', 'stage_1')]}"/>
+                    <button name="action_final_approval" type="object" string="Final Approval"
+                            modifiers="{'invisible': [('state', '!=', 'stage_2')]}"/>
+                    <button name="action_reject" type="object" string="Reject"
+                            modifiers="{'invisible': [('state', 'not in', ['draft', 'stage_1', 'stage_2'])]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="applicant_name"/>
+                        <field name="date_of_birth"/>
+                        <field name="national_id_number"/>
+                        <field name="place_of_birth"/>
+                        <field name="contact_number"/>
+                    </group>
+                    <group>
+                        <field name="photo" widget="image"/>
+                        <field name="lc_reference_letter" widget="binary"/>
+                    </group>
+                    <group>
+                        <field name="state"/>
+                        <field name="approved_by_stage_1"/>
+                        <field name="approved_by_stage_2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_national_id_application_kanban" model="ir.ui.view">
+        <field name="name">national.id.application.kanban</field>
+        <field name="model">national.id.application</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record">
+                            <field name="applicant_name"/>
+                            <field name="state"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- Action to open the National ID Application List (tree view) -->
+    <record id="action_national_id_application" model="ir.actions.act_window">
+        <field name="name">National ID Applications</field>
+        <field name="res_model">national.id.application</field>
+        <field name="view_mode">tree,form,kanban</field> <!-- Defines tree, form, and kanban views -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first National ID Application
+            </p>
+        </field>
+    </record>
+
+
+
+    <menuitem id="national_id_application_menu"
+              name="National ID Applications"
+              sequence="10" />
+    <menuitem id="national_id_application_menu_entry"
+              parent="national_id_application_menu"
+              action="action_national_id_application"
+              sequence="1" />
+
+</odoo>

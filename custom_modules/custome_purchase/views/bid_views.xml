@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Form View for RFQ Bid -->
+    <record id="view_rfq_bid_form" model="ir.ui.view">
+        <field name="name">rfq.bid.form</field>
+        <field name="model">rfq.bid</field>
+        <field name="arch" type="xml">
+            <form string="RFQ Bid">
+                <sheet>
+                    <group>
+                        <field name="purchase_order_id"/>
+                        <field name="vendor_id"/>
+                        <field name="bid_amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View for RFQ Bid -->
+    <record id="view_rfq_bid_tree" model="ir.ui.view">
+        <field name="name">rfq.bid.tree</field>
+        <field name="model">rfq.bid</field>
+        <field name="arch" type="xml">
+            <tree string="Bids">
+                <field name="purchase_order_id"/>
+                <field name="vendor_id"/>
+                <field name="bid_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Window Action for RFQ Bid -->
+    <record id="action_rfq_bid" model="ir.actions.act_window">
+        <field name="name">Bids</field>
+        <field name="res_model">rfq.bid</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_rfq_bid_tree"/>
+        <field name="help" type="html">
+            <p>Manage vendor bids for RFQs.</p>
+        </field>
+    </record>
+
+    <!-- Menu Item: Bids -->
+    <menuitem id="menu_rfq_bid_root"
+              name="Bids"
+              parent="purchase.menu_purchase_config"
+              action="action_rfq_bid"
+              sequence="20"/>
+</odoo>
